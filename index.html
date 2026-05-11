@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spitfire Audio — Technical Issues · April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1c1b19;
+  --ink2: #4c4a46;
+  --ink3: #96938e;
+  --paper: #f7f5f0;
+  --surface: #edeae3;
+  --border: #dedad1;
+  --red: #be3a20;
+  --red-bg: #f5e8e5;
+  --purple: #4a3a8a;
+  --purple-bg: #ebebf5;
+  --green: #2a6640;
+  --green-bg: #e3f0e8;
+  --amber: #a05c10;
+  --amber-bg: #f5eddc;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 2.5rem 3rem 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.hd-title h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.hd-title h1 em { font-style: italic; color: var(--red); }
+.hd-sub {
+  margin-top: 0.5rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink2);
+}
+.hd-right {
+  text-align: right;
+}
+.hd-right .big {
+  font-family: 'Instrument Serif', serif;
+  font-size: 3.4rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.hd-right .small {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  margin-top: 0.3rem;
+}
+
+/* ── LAYOUT ── */
+.page { max-width: 1400px; margin: 0 auto; padding: 2.5rem 3rem; }
+.section { margin-bottom: 3.5rem; }
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+.section-note {
+  font-size: 16px;
+  color: var(--ink);
+  margin-top: -0.75rem;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+/* ── OVERVIEW SPLIT ── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.ov-panel {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.ov-header {
+  padding: 1rem 1.25rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.ov-header-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ov-header-label.bot { color: var(--purple); }
+.ov-header-label.human { color: var(--red); }
+.ov-header-count {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.4rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.ov-header-count.bot { color: var(--purple); }
+.ov-header-count.human { color: var(--red); }
+.ov-header-sub {
+  font-size: 13px;
+  color: var(--ink2);
+  font-weight: 500;
+}
+.ov-body { padding: 0 1.25rem 1.25rem; }
+.ov-theme-list { list-style: none; }
+.ov-theme-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  gap: 1rem;
+}
+.ov-theme-list li:last-child { border-bottom: none; }
+.ov-theme-name { flex: 1; color: var(--ink); font-weight: 400; }
+.ov-theme-bar-wrap { width: 80px; }
+.ov-theme-bar { height: 6px; border-radius: 3px; }
+.ov-theme-bar.bot { background: var(--purple); }
+.ov-theme-bar.human { background: var(--red); }
+.ov-theme-n {
+  font-size: 15px;
+  font-weight: 600;
+  min-width: 28px;
+  text-align: right;
+  color: var(--ink);
+}
+
+/* ── PRODUCT PILLS ── */
+.prod-table { width: 100%; border-collapse: collapse; }
+.prod-table tr { border-bottom: 1px solid var(--border); }
+.prod-table tr:last-child { border-bottom: none; }
+.prod-table td { padding: 0.6rem 0.5rem; font-size: 16px; vertical-align: middle; color: var(--ink); }
+.prod-table td:first-child { font-weight: 500; width: 200px; }
+.prod-table td.prod-n { font-weight: 600; min-width: 36px; text-align: right; color: var(--ink2); }
+.prod-bar-cell { width: 260px; }
+.prod-bar { height: 8px; border-radius: 3px; background: var(--ink); }
+
+/* ── ANALYSIS CARDS ── */
+.analysis-list { display: flex; flex-direction: column; gap: 1px; }
+.a-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+.a-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  cursor: pointer;
+  background: var(--paper);
+  transition: background 0.12s;
+  user-select: none;
+}
+.a-header:hover { background: var(--surface); }
+.a-header.open { background: var(--surface); }
+.a-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.5rem;
+  color: var(--ink3);
+  line-height: 1;
+  min-width: 28px;
+}
+.a-title { font-size: 18px; font-weight: 600; }
+.a-count {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  min-width: 36px;
+  text-align: right;
+}
+.a-body {
+  display: none;
+  padding: 1rem 1.1rem 1.25rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.a-body.open { display: block; }
+.a-body p { font-size: 15px; color: var(--ink); line-height: 1.65; margin-bottom: 1rem; }
+.a-body ul { list-style: none; padding: 0; }
+.a-body ul li {
+  font-size: 15px;
+  color: var(--ink);
+  padding: 0.3rem 0 0.3rem 1rem;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+  position: relative;
+}
+.a-body ul li:last-child { border-bottom: none; }
+.a-body ul li::before { content: '–'; position: absolute; left: 0; color: var(--ink3); }
+
+/* ── BUGS SECTION ── */
+.bug-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.bug-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+  background: var(--paper);
+}
+.bug-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+  color: var(--ink);
+}
+.bug-card .bc-count {
+  font-size: 13px;
+  color: var(--ink2);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.bug-card ul { list-style: none; }
+.bug-card ul li {
+  font-size: 15px;
+  color: var(--ink);
+  padding: 0.28rem 0 0.28rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+  position: relative;
+}
+.bug-card ul li:last-child { border-bottom: none; }
+.bug-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--ink3); font-size: 16px; line-height: 1.2; }
+
+/* ── TAGS ── */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+.tag.bot { background: var(--purple-bg); color: var(--purple); }
+.tag.human { background: var(--red-bg); color: var(--red); }
+.tag.both { background: var(--amber-bg); color: var(--amber); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 3rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd-title">
+    <h1>Technical Issues<br><em>April 2026</em></h1>
+    <div class="hd-sub">Spitfire Audio · Support analysis · Product area: Technical</div>
+  </div>
+  <div class="hd-right">
+    <div class="big">303</div>
+    <div class="small">conversations analysed</div>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- ── SECTION 1: OVERVIEW ── -->
+  <div class="section">
+    <div class="eyebrow">Overview</div>
+    <h2>How 303 conversations were handled</h2>
+
+    <div class="overview-grid">
+
+      <!-- Jules panel -->
+      <div class="ov-panel">
+        <div class="ov-header">
+          <div>
+            <div class="ov-header-label bot">Handled by Jules (bot)</div>
+            <div class="ov-header-sub">Resolved without a human agent</div>
+          </div>
+          <div class="ov-header-count bot">173</div>
+        </div>
+        <div class="ov-body">
+          <ul class="ov-theme-list" id="julesThemes"></ul>
+        </div>
+      </div>
+
+      <!-- Human panel -->
+      <div class="ov-panel">
+        <div class="ov-header">
+          <div>
+            <div class="ov-header-label human">Escalated to agents</div>
+            <div class="ov-header-sub">Required human involvement</div>
+          </div>
+          <div class="ov-header-count human">130</div>
+        </div>
+        <div class="ov-body">
+          <ul class="ov-theme-list" id="humanThemes"></ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Product breakdown -->
+    <div class="eyebrow" style="margin-top:2rem">Most mentioned products</div>
+    <table class="prod-table" id="productStrip"></table>
+    <div style="font-size:11px;color:var(--ink3);font-weight:500;margin-top:0.5rem">
+      Numbers reflect conversations where the product was mentioned in the conversation text, or specifically tagged by a user or agent
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: ANALYSIS ── -->
+  <div class="section">
+    <div class="eyebrow">Issue analysis — click to expand</div>
+    <h2>What's driving volume</h2>
+    <div class="analysis-list" id="analysisList"></div>
+  </div>
+
+  <!-- ── SECTION 3: PRODUCT BUGS ── -->
+  <div class="section">
+    <div class="eyebrow">Product-specific bugs</div>
+    <h2>Reported bugs by product</h2>
+    <div class="section-note">Distinct, reproducible issues raised across multiple conversations this month.</div>
+    <div class="bug-grid" id="bugGrid"></div>
+  </div>
+
+</div>
+
+<footer>
+  <span>Spitfire Audio · Technical support analysis · April 2026</span>
+  <span>303 Intercom conversations · Jules bot 173 · Human agents 130</span>
+</footer>
+
+<script>
+// ── DATA ──
+
+const julesThemes = [
+  { name: 'Compatibility (OS, DAW, Kontakt)', n: 63, max: 63 },
+  { name: 'Installation & repair', n: 61, max: 63 },
+  { name: 'Bugs & unexpected behaviour', n: 41, max: 63 },
+  { name: 'Product how-to & feature questions', n: 28, max: 63 },
+  { name: 'Account & login', n: 27, max: 63 },
+  { name: 'LABS issues', n: 14, max: 63 },
+  { name: 'System optimisation', n: 13, max: 63 },
+];
+
+const humanThemes = [
+  { name: 'Bugs & crashes (unresolved)', n: 50, max: 63 },
+  { name: 'Error codes (#1, #3, #4) — fix steps not working', n: 43, max: 63 },
+  { name: 'Installation & repair failures', n: 38, max: 63 },
+  { name: 'Third-party software (Logic, Cubase, Dorico)', n: 28, max: 63 },
+  { name: 'Missing/lost files & library access', n: 20, max: 63 },
+  { name: 'LABS issues', n: 13, max: 63 },
+  { name: 'System optimisation & slow loading', n: 14, max: 63 },
+];
+
+const productData = [
+  { name: 'BBCSO (all versions)', bot: 37, human: 43, hot: true },
+  { name: 'Abbey Road Two', bot: 12, human: 9, hot: false },
+  { name: 'Abbey Road Orchestra', bot: 10, human: 8, hot: false },
+  { name: 'SSO', bot: 21, human: 5, hot: false },
+  { name: 'LABS', bot: 14, human: 11, hot: false },
+  { name: 'Solar', bot: 3, human: 10, hot: true },
+  { name: 'Eric Whitacre Choir', bot: 4, human: 9, hot: true },
+  { name: 'Orbis', bot: 3, human: 2, hot: false },
+  { name: 'Albion ONE', bot: 5, human: 0, hot: false },
+  { name: 'Angular Strings', bot: 3, human: 1, hot: false },
+  { name: 'AIR Studios Reverb', bot: 1, human: 2, hot: false },
+];
+
+const analysisItems = [
+  {
+    title: 'Installation, repair & locate failures',
+    count: 124, tag: 'both',
+    summary: '124 conversations. Users report issues with the Spitfire App helper, the repair and locate flow for dedicated plugins, and libraries not being found after moves or reinstalls. A recurring pattern: users state they have already followed the published steps and the issue persists. BBCSO, Kontakt-based libraries, and Logic Pro come up most often.',
+    bullets: [
+      'Unable to install helper or update to V3.4.17 on MacBook Pro M4',
+      'Abbey Road Two not appearing in Ableton after multiple reinstalls and repairs',
+      'BBCSO Pro on Spitfire SSD shows all products but reports they need repair',
+      'Orbis not picking up presets from external SSD after Mac migration',
+      'Spitfire App window opens with a constant spinning circle on Windows — never loads',
+      'LABS doesn\'t recognise downloaded libraries in Reaper after repair and locate steps',
+    ]
+  },
+  {
+    title: 'BBCSO — bugs & crashes',
+    count: 79, tag: 'both',
+    summary: '79 conversations. Version breakdown from confirmed product attribute: 23 Pro, 7 Core, 3 Discover. Problems include crashes in Logic Pro and Ableton, export/bounce failures, instruments going missing after a library update, and audio dropouts after upgrading to v1.12.1.',
+    bullets: [
+      'BBC SO causes Logic Pro to crash on startup — force quit required',
+      'Bouncing audio produces missing sections in output file',
+      'Render-in-place broken in Cubase — dry signal has random audio cuts',
+      'Audio dropouts after upgrading to BBCSO Pro v1.12.1',
+      'Instruments stopped showing in the plugin after library update',
+      'BBC SO Core locks up the entire computer when adding a track in Cubase',
+    ]
+  },
+  {
+    title: 'Kontakt & Native Access issues',
+    count: 56, tag: 'both',
+    summary: '56 conversations, 22 escalated. NKI files not found after Kontakt 8 upgrades, libraries loading as DEMO despite valid purchase, Kontakt Player vs full Kontakt confusion, and Native Access freezing during product installation.',
+    bullets: [
+      'Kontakt 8 can\'t find NKI file — file is visible in the system, just not in Kontakt',
+      'SSO installed via Native Access loads in Kontakt Player as DEMO',
+      'Hans Zimmer Piano freezes during product loading in Native Access',
+      'Titanium Euphonium shows "files incompatible" in Kontakt 8',
+    ]
+  },
+  {
+    title: 'Error codes (#1, #3, #4) — self-service not resolving',
+    count: 57, tag: 'human',
+    summary: '57 conversations across Error #1, #3 and #4. A consistent pattern across all three: users follow the published fix steps and report the issue persists. Error #1 (44 conversations) appears across BBCSO, Eric Whitacre Choir, Abbey Road Two, and Angular String Evolutions. Error #3 (13 conversations) recurs weekly for some users despite files not being moved. Users on M4 Macs with macOS Tahoe specifically report the Error #1 terminal fix not working.',
+    bullets: [
+      'Error #1 on BBCSO — tried all published solutions including terminal fix, still failing',
+      'Error #1 on Eric Whitacre Choir — repair done multiple times, red dot remains',
+      'Error #3 on BBC SO Pro returning every week — locate/repair don\'t fix it permanently',
+      'Error #3 on LABS — migration path causing the issue, download link not working',
+      'Error #4 on Abbey Road Two — samples cannot be located, reset and reinstall not resolving it',
+      'Error #1 on M4 Mac running Tahoe — terminal fix specifically not working',
+    ]
+  },
+  {
+    title: 'Logic Pro — crashes & plugin failures',
+    count: 40, tag: 'both',
+    summary: '40 conversations. Logic Pro is the most common DAW in escalated conversations — 41 of 109 where DAW was recorded. Issues include crashes on project open, plugins not appearing in the AU instruments list, and bounce/export failures. Logic 12 is named in multiple crash reports.',
+    bullets: [
+      'BBC SO causes Logic Pro to crash on startup',
+      'Solar does not load in Logic Pro 12.2 on Sequoia',
+      'Eric Whitacre Choir not showing in Logic plugin list despite AU registered',
+      'BBCSO not loading in Logic Pro 12.2 — stored on dedicated SSD',
+      'Logic Pro bounce drops audio when using BBCSO Pro as a software track',
+    ]
+  },
+  {
+    title: 'Abbey Road — slow loading & bugs',
+    count: 32, tag: 'both',
+    summary: '32 conversations. Issues include extremely slow load/unload times, a reverb LED bug affecting audio export, crashes in Studio One on VST3 load, and audio glitches on bounce.',
+    bullets: [
+      'Abbey Road Two player extremely slow to load and unload',
+      'Large Hall reverb LED flashes continuously after selecting — affects audio export',
+      'Studio One Pro crashes immediately on loading Abbey Road Orchestra VST3',
+      'Clicking sound at the start of every note in Logic Pro',
+    ]
+  },
+  {
+    title: 'Spitfire App not launching / helper errors',
+    count: 33, tag: 'both',
+    summary: '33 conversations. The Spitfire App failing to open, communicate with the helper tool, or update. Seen on both Mac and Windows. V3.4.17 is specifically mentioned in several failure reports.',
+    bullets: [
+      '"Unable to find helper" — terminal command and restart both tried, not resolved',
+      'Spitfire App reinstalled but window shows a constant spinning circle, never loads',
+      'Unable to install helper or update to V3.4.17 on M4 MacBook Pro',
+      'Spitfire App won\'t open on macOS High Sierra (10.13.6)',
+    ]
+  },
+  {
+    title: 'macOS Tahoe (OS 26) compatibility',
+    count: 18, tag: 'both',
+    summary: '18 conversations. Angular String Evolutions, BBCSO, and dedicated plugins are named most often. macOS 26 is the second most common OS in escalated conversations after macOS 15.',
+    bullets: [
+      'Will Angular String Evolutions be compatible with OS 26 Tahoe?',
+      'Plugin installation issues on Mac Studio M4 Max with macOS Tahoe + Logic Pro 12',
+      'Loading issues on M4 Pro running Tahoe 26.3.1 — repair not helping',
+      'M4 MacBook running Tahoe — Error #1 fix steps including terminal command not working',
+    ]
+  },
+  {
+    title: 'Solar — no sound & crashes',
+    count: 13, tag: 'human',
+    summary: '13 conversations, 10 escalated. Instruments loading correctly but producing no sound, crashes in Logic Pro 12, and the undo history polling bug in Reaper (Mercury, confirmed on v1.7.5 — logged as INSTS-189). One user purchased all four Solar instruments and could not use any of them.',
+    bullets: [
+      'Solar loading correctly but no sound when playing notes in Logic Pro',
+      'Mercury: undo history in Reaper fills automatically with plugin-generated events (v1.7.5)',
+      'Solar not loading in Logic Pro 12.2 on Sequoia',
+      'Purchased all four Solar instruments — unable to use any of them',
+    ]
+  },
+  {
+    title: 'LABS — libraries not loading & disappearing',
+    count: 27, tag: 'both',
+    summary: '27 conversations, 17 with confirmed product attribute set. Libraries not loading, instruments disappearing when adding new downloads, Error #1 in the legacy plugin, and patch files going missing.',
+    bullets: [
+      'All downloaded instruments deleted when adding new ones',
+      'Patch files missing across sessions',
+      'Legacy plugin: no "..." menu to access repair — Error #1 unresolvable without it',
+      'Splice subscription not unlocking in LABS plugin',
+    ]
+  },
+];
+
+const bugData = [
+  {
+    name: 'BBCSO (all versions)',
+    meta: '79 conversations',
+    linear: [{ id: 'INSTS-1122', title: 'BBC Symphony Orchestra audio truncates using offline bounce regression', url: 'https://linear.app/splice/issue/INSTS-1122/bbc-symphony-orchestra-audio-truncates-using-offline-bounce-regression', convos: 3 }],
+    bugs: [
+      'Render-in-place broken in Cubase — dry signal has random audio cuts in waveform',
+      'Crashes Logic Pro on startup — force quit required',
+      'Audio dropouts after upgrading to v1.12.1 — not resolved by buffer adjustment',
+      'Entire computer locks up when adding a BBCSO track in Cubase or Sonar',
+      'Legato patches not triggering correctly',
+      'Instruments disappear from plugin after library update',
+    ]
+  },
+  {
+    name: 'Solar',
+    meta: '13 conversations',
+    linear: [{ id: 'INSTS-189', title: 'Merlin plugins polling/adding to undo lists even when idle/offline', url: 'https://linear.app/splice/issue/INSTS-189/merlin-plugins-pollingadding-to-undo-lists-even-when-idleoffline', convos: 2 }],
+    bugs: [
+      'Not loading in Logic Pro 12.2 on Sequoia',
+      'No sound on load despite correct installation — multiple users, multiple instruments',
+      'v1.7.5 introduces instability — users requesting downgrade path',
+    ]
+  },
+  {
+    name: 'Abbey Road Two',
+    meta: '18 conversations',
+    linear: [],
+    bugs: [
+      'Large Hall reverb LED flashes continuously after selecting — audio export affected',
+      'Extremely slow loading and unloading times — affects all session open/close',
+      'Clicking artefact at the start of every note in Logic Pro',
+      'Studio One Pro crashes immediately on VST3 load',
+    ]
+  },
+  {
+    name: 'Eric Whitacre Choir',
+    meta: '14 conversations',
+    linear: [],
+    bugs: [
+      'Not showing in Logic Pro AU list despite component file present and correctly installed',
+      'Presets not found on fresh install — affects multiple users across versions',
+    ]
+  },
+  {
+    name: 'SSO',
+    meta: '27 conversations',
+    linear: [],
+    bugs: [
+      'CC1 and CC11 not working at the exact start of a note in Kontakt Player',
+      'Motif Brass update not appearing in Kontakt after installation',
+      'Solo Violin Performance patch — audible musician sounds in recording',
+      'Automation (CC1/CC11) written to Reaper undo log during playback',
+      'SSO Discover stuck on white screen — unresolved for multiple users across weeks',
+    ]
+  },
+  {
+    name: 'AIR Studios Reverb',
+    meta: '7 conversations',
+    linear: [],
+    bugs: [
+      'Crashes on session close in Nuendo 15 after recent update',
+      'Logic Pro audio bounce failing since update',
+      'Persistent high-pitched noise on plugin load',
+    ]
+  },
+  {
+    name: 'LABS',
+    meta: '27 conversations',
+    linear: [],
+    bugs: [
+      'All previously downloaded instruments deleted when adding new ones',
+      'Patch files going missing between sessions',
+      'Legacy plugin: no "..." menu to access repair — Error #1 unresolvable without it',
+      'Splice subscription not unlocking in LABS plugin',
+    ]
+  },
+  {
+    name: 'Originals',
+    meta: '12 conversations',
+    linear: [],
+    bugs: [
+      'Epic Strings Pizzicato: notes D#2 and E2 both sound when either is played',
+      'Originals Cinematic Pads purchased but shows "Subscribe" in LABS — won\'t unlock',
+      'Epic Choir not responding to dynamics in Dorico expression map',
+    ]
+  },
+];
+
+// ── RENDER ──
+
+function renderThemes(data, elId, cls) {
+  const el = document.getElementById(elId);
+  const max = Math.max(...data.map(t => t.n));
+  data.forEach(t => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span class="ov-theme-name">${t.name}</span>
+      <div class="ov-theme-bar-wrap">
+        <div class="ov-theme-bar ${cls}" style="width:${Math.round(t.n/max*75)}px"></div>
+      </div>
+      <span class="ov-theme-n">${t.n}</span>`;
+    el.appendChild(li);
+  });
+}
+renderThemes(julesThemes, 'julesThemes', 'bot');
+renderThemes(humanThemes, 'humanThemes', 'human');
+
+// Products
+const strip = document.getElementById('productStrip');
+const sortedProds = [...productData].sort((a,b) => (b.bot+b.human) - (a.bot+a.human));
+const maxProd = sortedProds[0].bot + sortedProds[0].human;
+sortedProds.forEach(p => {
+  const total = p.bot + p.human;
+  const barW = Math.round(total / maxProd * 220);
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${p.name}</td><td class="prod-bar-cell"><div class="prod-bar" style="width:${barW}px"></div></td><td class="prod-n">${total}</td>`;
+  strip.appendChild(tr);
+});
+
+// Analysis cards
+const alist = document.getElementById('analysisList');
+analysisItems.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'a-card';
+  card.innerHTML = `
+    <div class="a-header" onclick="toggleCard(this)">
+      <div class="a-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="a-title">${item.title}</div>
+      <div class="a-count">${item.count}</div>
+    </div>
+    <div class="a-body">
+      <p>${item.summary}</p>
+      <ul>${item.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+    </div>`;
+  alist.appendChild(card);
+});
+
+function toggleCard(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.a-body.open').forEach(b => { b.classList.remove('open'); b.previousElementSibling.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); header.classList.add('open'); }
+}
+
+// Bug grid
+const bgrid = document.getElementById('bugGrid');
+bugData.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'bug-card';
+
+  const linearSection = p.linear && p.linear.length ? `
+    <div style="margin-bottom:0.75rem">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.5rem">Confirmed in Linear</div>
+      ${p.linear.map(l => `
+        <div style="background:var(--green-bg);border-radius:4px;padding:0.6rem 0.75rem;margin-bottom:4px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem">
+            <a href="${l.url}" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:var(--green);text-decoration:none">${l.id} — ${l.title}</a>
+            <span style="font-size:12px;font-weight:600;color:var(--green);white-space:nowrap">${l.convos} conversation${l.convos !== 1 ? 's' : ''}</span>
+          </div>
+        </div>`).join('')}
+    </div>` : '';
+
+  const bugsSection = p.bugs && p.bugs.length ? `
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.5rem">Reported</div>
+      <ul>${p.bugs.map(b => `<li>${b}</li>`).join('')}</ul>
+    </div>` : '';
+
+  card.innerHTML = `
+    <h4>${p.name}</h4>
+    <div class="bc-meta" style="margin-bottom:0.75rem">${p.meta}</div>
+    ${linearSection}${bugsSection}`;
+  bgrid.appendChild(card);
+});
+</script>
+</body>
+</html>
