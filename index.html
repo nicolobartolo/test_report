@@ -418,8 +418,8 @@ const productData = [
 
 const analysisItems = [
   {
-    title: 'Installation, repair & locate failures',
-    count: 124, tag: 'both',
+    title: 'Installation, repair & app issues',
+    count: 97, tag: 'both',
     summary: 'Repair and locate failures on dedicated plugins, libraries not found after moves, and helper tool errors. A consistent pattern: users have followed the published steps and the issue persists.',
     bullets: [
       'Unable to install helper or update to V3.4.17 on MacBook Pro M4',
@@ -432,7 +432,7 @@ const analysisItems = [
   },
   {
     title: 'BBCSO — bugs & crashes',
-    count: 79, tag: 'both',
+    count: 67, tag: 'both',
     summary: 'Crashes in Logic Pro and Ableton, export/bounce failures, instruments disappearing after library updates, audio dropouts after v1.12.1. Version breakdown: 23 Pro, 7 Core, 3 Discover.',
     bullets: [
       'BBC SO causes Logic Pro to crash on startup — force quit required',
@@ -444,8 +444,40 @@ const analysisItems = [
     ]
   },
   {
+    title: 'Kontakt & Native Access issues',
+    count: 45, tag: 'both',
+    summary: 'NKI files not found after Kontakt 8 upgrades, libraries loading as DEMO, Kontakt Player vs full Kontakt confusion, Native Access freezing on install.',
+    bullets: [
+      'Kontakt 8 can\'t find NKI file — file is visible in the system, just not in Kontakt',
+      'SSO installed via Native Access loads in Kontakt Player as DEMO',
+      'Hans Zimmer Piano freezes during product loading in Native Access',
+      'Titanium Euphonium shows "files incompatible" in Kontakt 8',
+    ]
+  },
+  {
+    title: 'Abbey Road — slow loading & bugs',
+    count: 28, tag: 'both',
+    summary: 'Slow load/unload times, reverb LED bug affecting export, Studio One crashes on VST3 load, audio glitches on bounce.',
+    bullets: [
+      'Abbey Road Two player extremely slow to load and unload',
+      'Large Hall reverb LED flashes continuously after selecting — affects audio export',
+      'Studio One Pro crashes immediately on loading Abbey Road Orchestra VST3',
+      'Clicking sound at the start of every note in Logic Pro',
+    ]
+  },
+  {
+    title: 'LABS — libraries not loading & disappearing',
+    count: 24, tag: 'both',
+    summary: 'Libraries not loading, instruments disappearing when adding new downloads, patch files going missing.',
+    bullets: [
+      'All downloaded instruments deleted when adding new ones',
+      'Patch files missing across sessions',
+      'Splice subscription not unlocking in LABS plugin',
+    ]
+  },
+  {
     title: 'Error codes (#1, #3, #4) — self-service not resolving',
-    count: 57, tag: 'human',
+    count: 15, tag: 'human',
     summary: 'Error #1 — plugin cannot find patches/presets. Error #3 — plugin cannot load sample content. Error #4 — plugin cannot locate samples. Published fix steps not resolving. Error #3 recurring weekly despite files not being moved. Error #1 terminal fix not working on M4 Macs with Tahoe.',
     bullets: [
       'Error #1 on BBCSO — tried all published solutions including terminal fix, still failing',
@@ -457,80 +489,25 @@ const analysisItems = [
     ]
   },
   {
-    title: 'Kontakt & Native Access issues',
-    count: 56, tag: 'both',
-    summary: 'NKI files not found after Kontakt 8 upgrades, libraries loading as DEMO, Kontakt Player vs full Kontakt confusion, Native Access freezing on install.',
-    bullets: [
-      'Kontakt 8 can\'t find NKI file — file is visible in the system, just not in Kontakt',
-      'SSO installed via Native Access loads in Kontakt Player as DEMO',
-      'Hans Zimmer Piano freezes during product loading in Native Access',
-      'Titanium Euphonium shows "files incompatible" in Kontakt 8',
-    ]
-  },
-  {
-    title: 'Plugin crashes & failures across DAWs',
-    count: 40, tag: 'both',
-    summary: 'Crashes on project open, plugins missing from plugin lists, bounce and export failures.',
-    bullets: [
-      'BBC SO causes Logic Pro to crash on startup',
-      'Solar does not load in Logic Pro 12.2 on Sequoia',
-      'Eric Whitacre Choir not showing in Logic plugin list despite AU registered',
-      'BBCSO not loading in Logic Pro 12.2 — stored on dedicated SSD',
-      'Logic Pro bounce drops audio when using BBCSO Pro as a software track',
-    ]
-  },
-  {
-    title: 'Spitfire App not launching / helper errors',
-    count: 33, tag: 'both',
-    summary: 'App failing to open, communicate with the helper tool, or update — on both Mac and Windows. V3.4.17 mentioned in several failure reports.',
-    bullets: [
-      '"Unable to find helper" — terminal command and restart both tried, not resolved',
-      'Spitfire App reinstalled but window shows a constant spinning circle, never loads',
-      'Unable to install helper or update to V3.4.17 on M4 MacBook Pro',
-      'Spitfire App won\'t open on macOS High Sierra (10.13.6)',
-    ]
-  },
-  {
-    title: 'Abbey Road — slow loading & bugs',
-    count: 32, tag: 'both',
-    summary: 'Slow load/unload times, reverb LED bug affecting export, Studio One crashes on VST3 load, audio glitches on bounce.',
-    bullets: [
-      'Abbey Road Two player extremely slow to load and unload',
-      'Large Hall reverb LED flashes continuously after selecting — affects audio export',
-      'Studio One Pro crashes immediately on loading Abbey Road Orchestra VST3',
-      'Clicking sound at the start of every note in Logic Pro',
-    ]
-  },
-  {
-    title: 'LABS — libraries not loading & disappearing',
-    count: 27, tag: 'both',
-    summary: 'Libraries not loading, instruments disappearing when adding new downloads, patch files going missing.',
-    bullets: [
-      'All downloaded instruments deleted when adding new ones',
-      'Patch files missing across sessions',
-      'Splice subscription not unlocking in LABS plugin',
-    ]
-  },
-  {
-    title: 'macOS Tahoe (OS 26) compatibility',
-    count: 18, tag: 'both',
-    summary: 'Angular String Evolutions, BBCSO, and dedicated plugins named most. macOS 26 is the second most common OS in escalated tickets after macOS 15.',
-    bullets: [
-      'Will Angular String Evolutions be compatible with OS 26 Tahoe?',
-      'Plugin installation issues on Mac Studio M4 Max with macOS Tahoe + Logic Pro 12',
-      'Loading issues on M4 Pro running Tahoe 26.3.1 — repair not helping',
-      'M4 MacBook running Tahoe — Error #1 fix steps including terminal command not working',
-    ]
-  },
-  {
     title: 'Solar — no sound & crashes',
-    count: 13, tag: 'human',
+    count: 11, tag: 'human',
     summary: 'No sound on load, crashes in Logic Pro 12, undo history polling bug in Reaper on Mercury v1.7.5 (INSTS-189).',
     bullets: [
       'Solar loading correctly but no sound when playing notes in Logic Pro',
       'Mercury: undo history in Reaper fills automatically with plugin-generated events (v1.7.5)',
       'Solar not loading in Logic Pro 12.2 on Sequoia',
       'Purchased all four Solar instruments — unable to use any of them',
+    ]
+  },
+  {
+    title: 'macOS Tahoe (OS 26) compatibility',
+    count: 6, tag: 'both',
+    summary: 'Angular String Evolutions, BBCSO, and dedicated plugins named most. macOS 26 is the second most common OS in escalated tickets after macOS 15.',
+    bullets: [
+      'Will Angular String Evolutions be compatible with OS 26 Tahoe?',
+      'Plugin installation issues on Mac Studio M4 Max with macOS Tahoe + Logic Pro 12',
+      'Loading issues on M4 Pro running Tahoe 26.3.1 — repair not helping',
+      'M4 MacBook running Tahoe — Error #1 fix steps including terminal command not working',
     ]
   }
 ];
