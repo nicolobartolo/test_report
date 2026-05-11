@@ -370,7 +370,7 @@ footer {
   <div class="section">
     <div class="eyebrow">Product-specific bugs</div>
     <h2>Reported bugs by product</h2>
-    <div class="section-note">Distinct, reproducible issues raised across multiple conversations this month.</div>
+    <div class="section-note">Conversations linked to existing Linear tickets, new reports currently being investigated.</div>
     <div class="bug-grid" id="bugGrid"></div>
   </div>
 
@@ -389,7 +389,6 @@ const julesThemes = [
   { name: 'Installation & repair', n: 61, max: 63 },
   { name: 'Bugs & unexpected behaviour', n: 41, max: 63 },
   { name: 'Product how-to & feature questions', n: 28, max: 63 },
-  { name: 'Account & login', n: 27, max: 63 },
   { name: 'LABS issues', n: 14, max: 63 },
   { name: 'System optimisation', n: 13, max: 63 },
 ];
@@ -398,7 +397,6 @@ const humanThemes = [
   { name: 'Bugs & crashes (unresolved)', n: 50, max: 63 },
   { name: 'Error codes (#1, #3, #4) — fix steps not working', n: 43, max: 63 },
   { name: 'Installation & repair failures', n: 38, max: 63 },
-  { name: 'Third-party software (Logic, Cubase, Dorico)', n: 28, max: 63 },
   { name: 'Missing/lost files & library access', n: 20, max: 63 },
   { name: 'LABS issues', n: 13, max: 63 },
   { name: 'System optimisation & slow loading', n: 14, max: 63 },
@@ -422,7 +420,7 @@ const analysisItems = [
   {
     title: 'Installation, repair & locate failures',
     count: 124, tag: 'both',
-    summary: '124 conversations. Users report issues with the Spitfire App helper, the repair and locate flow for dedicated plugins, and libraries not being found after moves or reinstalls. A recurring pattern: users state they have already followed the published steps and the issue persists. BBCSO, Kontakt-based libraries, and Logic Pro come up most often.',
+    summary: 'Repair and locate failures on dedicated plugins, libraries not found after moves, and helper tool errors. A consistent pattern: users have followed the published steps and the issue persists.',
     bullets: [
       'Unable to install helper or update to V3.4.17 on MacBook Pro M4',
       'Abbey Road Two not appearing in Ableton after multiple reinstalls and repairs',
@@ -435,7 +433,7 @@ const analysisItems = [
   {
     title: 'BBCSO — bugs & crashes',
     count: 79, tag: 'both',
-    summary: '79 conversations. Version breakdown from confirmed product attribute: 23 Pro, 7 Core, 3 Discover. Problems include crashes in Logic Pro and Ableton, export/bounce failures, instruments going missing after a library update, and audio dropouts after upgrading to v1.12.1.',
+    summary: 'Crashes in Logic Pro and Ableton, export/bounce failures, instruments disappearing after library updates, audio dropouts after v1.12.1. Version breakdown: 23 Pro, 7 Core, 3 Discover.',
     bullets: [
       'BBC SO causes Logic Pro to crash on startup — force quit required',
       'Bouncing audio produces missing sections in output file',
@@ -446,20 +444,9 @@ const analysisItems = [
     ]
   },
   {
-    title: 'Kontakt & Native Access issues',
-    count: 56, tag: 'both',
-    summary: '56 conversations, 22 escalated. NKI files not found after Kontakt 8 upgrades, libraries loading as DEMO despite valid purchase, Kontakt Player vs full Kontakt confusion, and Native Access freezing during product installation.',
-    bullets: [
-      'Kontakt 8 can\'t find NKI file — file is visible in the system, just not in Kontakt',
-      'SSO installed via Native Access loads in Kontakt Player as DEMO',
-      'Hans Zimmer Piano freezes during product loading in Native Access',
-      'Titanium Euphonium shows "files incompatible" in Kontakt 8',
-    ]
-  },
-  {
     title: 'Error codes (#1, #3, #4) — self-service not resolving',
     count: 57, tag: 'human',
-    summary: '57 conversations across Error #1, #3 and #4. A consistent pattern across all three: users follow the published fix steps and report the issue persists. Error #1 (44 conversations) appears across BBCSO, Eric Whitacre Choir, Abbey Road Two, and Angular String Evolutions. Error #3 (13 conversations) recurs weekly for some users despite files not being moved. Users on M4 Macs with macOS Tahoe specifically report the Error #1 terminal fix not working.',
+    summary: 'Error #1 — plugin cannot find patches/presets. Error #3 — plugin cannot load sample content. Error #4 — plugin cannot locate samples. Published fix steps not resolving. Error #3 recurring weekly despite files not being moved. Error #1 terminal fix not working on M4 Macs with Tahoe.',
     bullets: [
       'Error #1 on BBCSO — tried all published solutions including terminal fix, still failing',
       'Error #1 on Eric Whitacre Choir — repair done multiple times, red dot remains',
@@ -470,9 +457,20 @@ const analysisItems = [
     ]
   },
   {
-    title: 'Logic Pro — crashes & plugin failures',
+    title: 'Kontakt & Native Access issues',
+    count: 56, tag: 'both',
+    summary: 'NKI files not found after Kontakt 8 upgrades, libraries loading as DEMO, Kontakt Player vs full Kontakt confusion, Native Access freezing on install.',
+    bullets: [
+      'Kontakt 8 can\'t find NKI file — file is visible in the system, just not in Kontakt',
+      'SSO installed via Native Access loads in Kontakt Player as DEMO',
+      'Hans Zimmer Piano freezes during product loading in Native Access',
+      'Titanium Euphonium shows "files incompatible" in Kontakt 8',
+    ]
+  },
+  {
+    title: 'Plugin crashes & failures across DAWs',
     count: 40, tag: 'both',
-    summary: '40 conversations. Logic Pro is the most common DAW in escalated conversations — 41 of 109 where DAW was recorded. Issues include crashes on project open, plugins not appearing in the AU instruments list, and bounce/export failures. Logic 12 is named in multiple crash reports.',
+    summary: 'Crashes on project open, plugins missing from plugin lists, bounce and export failures.',
     bullets: [
       'BBC SO causes Logic Pro to crash on startup',
       'Solar does not load in Logic Pro 12.2 on Sequoia',
@@ -482,20 +480,9 @@ const analysisItems = [
     ]
   },
   {
-    title: 'Abbey Road — slow loading & bugs',
-    count: 32, tag: 'both',
-    summary: '32 conversations. Issues include extremely slow load/unload times, a reverb LED bug affecting audio export, crashes in Studio One on VST3 load, and audio glitches on bounce.',
-    bullets: [
-      'Abbey Road Two player extremely slow to load and unload',
-      'Large Hall reverb LED flashes continuously after selecting — affects audio export',
-      'Studio One Pro crashes immediately on loading Abbey Road Orchestra VST3',
-      'Clicking sound at the start of every note in Logic Pro',
-    ]
-  },
-  {
     title: 'Spitfire App not launching / helper errors',
     count: 33, tag: 'both',
-    summary: '33 conversations. The Spitfire App failing to open, communicate with the helper tool, or update. Seen on both Mac and Windows. V3.4.17 is specifically mentioned in several failure reports.',
+    summary: 'App failing to open, communicate with the helper tool, or update — on both Mac and Windows. V3.4.17 mentioned in several failure reports.',
     bullets: [
       '"Unable to find helper" — terminal command and restart both tried, not resolved',
       'Spitfire App reinstalled but window shows a constant spinning circle, never loads',
@@ -504,9 +491,31 @@ const analysisItems = [
     ]
   },
   {
+    title: 'Abbey Road — slow loading & bugs',
+    count: 32, tag: 'both',
+    summary: 'Slow load/unload times, reverb LED bug affecting export, Studio One crashes on VST3 load, audio glitches on bounce.',
+    bullets: [
+      'Abbey Road Two player extremely slow to load and unload',
+      'Large Hall reverb LED flashes continuously after selecting — affects audio export',
+      'Studio One Pro crashes immediately on loading Abbey Road Orchestra VST3',
+      'Clicking sound at the start of every note in Logic Pro',
+    ]
+  },
+  {
+    title: 'LABS — libraries not loading & disappearing',
+    count: 27, tag: 'both',
+    summary: 'Libraries not loading, instruments disappearing when adding new downloads, patch files going missing, legacy plugin Error #1.',
+    bullets: [
+      'All downloaded instruments deleted when adding new ones',
+      'Patch files missing across sessions',
+      'Legacy plugin: no "..." menu to access repair — Error #1 unresolvable without it',
+      'Splice subscription not unlocking in LABS plugin',
+    ]
+  },
+  {
     title: 'macOS Tahoe (OS 26) compatibility',
     count: 18, tag: 'both',
-    summary: '18 conversations. Angular String Evolutions, BBCSO, and dedicated plugins are named most often. macOS 26 is the second most common OS in escalated conversations after macOS 15.',
+    summary: 'Angular String Evolutions, BBCSO, and dedicated plugins named most. macOS 26 is the second most common OS in escalated tickets after macOS 15.',
     bullets: [
       'Will Angular String Evolutions be compatible with OS 26 Tahoe?',
       'Plugin installation issues on Mac Studio M4 Max with macOS Tahoe + Logic Pro 12',
@@ -517,31 +526,20 @@ const analysisItems = [
   {
     title: 'Solar — no sound & crashes',
     count: 13, tag: 'human',
-    summary: '13 conversations, 10 escalated. Instruments loading correctly but producing no sound, crashes in Logic Pro 12, and the undo history polling bug in Reaper (Mercury, confirmed on v1.7.5 — logged as INSTS-189). One user purchased all four Solar instruments and could not use any of them.',
+    summary: 'No sound on load, crashes in Logic Pro 12, undo history polling bug in Reaper on Mercury v1.7.5 (INSTS-189).',
     bullets: [
       'Solar loading correctly but no sound when playing notes in Logic Pro',
       'Mercury: undo history in Reaper fills automatically with plugin-generated events (v1.7.5)',
       'Solar not loading in Logic Pro 12.2 on Sequoia',
       'Purchased all four Solar instruments — unable to use any of them',
     ]
-  },
-  {
-    title: 'LABS — libraries not loading & disappearing',
-    count: 27, tag: 'both',
-    summary: '27 conversations, 17 with confirmed product attribute set. Libraries not loading, instruments disappearing when adding new downloads, Error #1 in the legacy plugin, and patch files going missing.',
-    bullets: [
-      'All downloaded instruments deleted when adding new ones',
-      'Patch files missing across sessions',
-      'Legacy plugin: no "..." menu to access repair — Error #1 unresolvable without it',
-      'Splice subscription not unlocking in LABS plugin',
-    ]
-  },
+  }
 ];
 
 const bugData = [
   {
     name: 'BBCSO (all versions)',
-    meta: '79 conversations',
+    meta: '26 bug-tagged conversations',
     linear: [{ id: 'INSTS-1122', title: 'BBC Symphony Orchestra audio truncates using offline bounce regression', url: 'https://linear.app/splice/issue/INSTS-1122/bbc-symphony-orchestra-audio-truncates-using-offline-bounce-regression', convos: 3 }],
     bugs: [
       'Render-in-place broken in Cubase — dry signal has random audio cuts in waveform',
@@ -554,7 +552,7 @@ const bugData = [
   },
   {
     name: 'Solar',
-    meta: '13 conversations',
+    meta: '4 bug-tagged conversations',
     linear: [{ id: 'INSTS-189', title: 'Merlin plugins polling/adding to undo lists even when idle/offline', url: 'https://linear.app/splice/issue/INSTS-189/merlin-plugins-pollingadding-to-undo-lists-even-when-idleoffline', convos: 2 }],
     bugs: [
       'Not loading in Logic Pro 12.2 on Sequoia',
@@ -564,7 +562,7 @@ const bugData = [
   },
   {
     name: 'Abbey Road Two',
-    meta: '18 conversations',
+    meta: '5 bug-tagged conversations',
     linear: [],
     bugs: [
       'Large Hall reverb LED flashes continuously after selecting — audio export affected',
@@ -575,7 +573,7 @@ const bugData = [
   },
   {
     name: 'Eric Whitacre Choir',
-    meta: '14 conversations',
+    meta: '1 bug-tagged conversation',
     linear: [],
     bugs: [
       'Not showing in Logic Pro AU list despite component file present and correctly installed',
@@ -584,7 +582,7 @@ const bugData = [
   },
   {
     name: 'SSO',
-    meta: '27 conversations',
+    meta: '27 conversations · product-specific issues',
     linear: [],
     bugs: [
       'CC1 and CC11 not working at the exact start of a note in Kontakt Player',
@@ -596,7 +594,7 @@ const bugData = [
   },
   {
     name: 'AIR Studios Reverb',
-    meta: '7 conversations',
+    meta: '2 bug-tagged conversations',
     linear: [],
     bugs: [
       'Crashes on session close in Nuendo 15 after recent update',
@@ -606,7 +604,7 @@ const bugData = [
   },
   {
     name: 'LABS',
-    meta: '27 conversations',
+    meta: '27 conversations · product-specific issues',
     linear: [],
     bugs: [
       'All previously downloaded instruments deleted when adding new ones',
@@ -617,7 +615,7 @@ const bugData = [
   },
   {
     name: 'Originals',
-    meta: '12 conversations',
+    meta: '3 bug-tagged conversations',
     linear: [],
     bugs: [
       'Epic Strings Pizzicato: notes D#2 and E2 both sound when either is played',
@@ -671,6 +669,7 @@ analysisItems.forEach((item, i) => {
     </div>
     <div class="a-body">
       <p>${item.summary}</p>
+      <p style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.4rem;margin-top:0.75rem">From conversations</p>
       <ul>${item.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
     </div>`;
   alist.appendChild(card);
@@ -695,7 +694,7 @@ bugData.forEach(p => {
       ${p.linear.map(l => `
         <div style="background:var(--green-bg);border-radius:4px;padding:0.6rem 0.75rem;margin-bottom:4px">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem">
-            <a href="${l.url}" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:var(--green);text-decoration:none">${l.id} — ${l.title}</a>
+            <a href="${l.url}" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:var(--green);text-decoration:underline">${l.id} — ${l.title}</a>
             <span style="font-size:12px;font-weight:600;color:var(--green);white-space:nowrap">${l.convos} conversation${l.convos !== 1 ? 's' : ''}</span>
           </div>
         </div>`).join('')}
@@ -709,7 +708,6 @@ bugData.forEach(p => {
 
   card.innerHTML = `
     <h4>${p.name}</h4>
-    <div class="bc-meta" style="margin-bottom:0.75rem">${p.meta}</div>
     ${linearSection}${bugsSection}`;
   bgrid.appendChild(card);
 });
